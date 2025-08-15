@@ -1,7 +1,7 @@
 import {create} from "zustand/react";
 import type {StateCreator} from "zustand/vanilla";
 
-interface CounterState {
+interface CounterStateInt {
     counter: number;
 }
 
@@ -12,7 +12,7 @@ interface CounterActions{
 }
 
 
-const counterSlice: StateCreator<CounterState & CounterActions> = (set, get) =>({
+const counterSlice: StateCreator<CounterStateInt & CounterActions> = (set, get) =>({
     counter: 0,
     increment: () =>{
         const {counter} = get();
@@ -28,6 +28,6 @@ const counterSlice: StateCreator<CounterState & CounterActions> = (set, get) =>(
     }
 })
 
-export const useCounterStore = create<CounterState & CounterActions>(counterSlice);
+export const useCounterStore = create<CounterStateInt & CounterActions>(counterSlice);
 export const changeByMount = (value: number) => useCounterStore.getState().changeByMount(value)
 export const getCounter = () => useCounterStore.getState().counter
